@@ -20,19 +20,38 @@ namespace EasySave
             }
             Lire.Close();
         }
-
-        static void ecrireFichier(string cheminFichier, string aEcrire)
+        static void ecrireFichier(string cheminFichier, string aEcrire, bool ecraser)
         {
             //la fonction peut être utilisée pour créer un fichier en laissant aEcrire vide
-            StreamWriter Ecrire = new StreamWriter(cheminFichier,true); 
-            //le true fait en sorte que la fonction fasse un append au lieu d'overwrite le fichier /!\
-
-            Ecrire.WriteLine(aEcrire);
-            Ecrire.Close();
+            if (ecraser == false)
+            {
+                StreamWriter Ecrire = new StreamWriter(cheminFichier, true);
+                Ecrire.WriteLine(aEcrire);
+                Ecrire.Close();
+            }
+            else
+            {
+                StreamWriter Ecrire = new StreamWriter(cheminFichier, false);
+                Ecrire.WriteLine(aEcrire);
+                Ecrire.Close();
+            }
         }
 
-        static void copierDossier(string dossierSource, string dossierCible)
+        static void multiBackup(string cheminFichier) //prends en paramètre un fichier contenant une liste de backup à exécuter
         {
+            StreamReader Lire = new StreamReader(cheminFichier);
+            string line;
+            while ((line = Lire.ReadLine()) != null)
+            {
+                executeBackup(@"C:\Easysave\Profils\" + line + ".txt");
+            }
+            Lire.Close();
+        }
+        static void executeBackup(string cheminProfil)
+        {
+            string dossierSource = File.ReadLines(cheminProfil).Skip(1).Take(1).First(); //la 2e ligne du profil est le dossier source
+            string dossierCible = File.ReadLines(cheminProfil).Skip(2).Take(1).First(); //la 3e ligne du profil est le dossier cible
+
             string cheminAvancement = @"C:\Easysave\avancement.txt";
             string cheminLogs = @"C:\Easysave\logs.txt";
             // Vérifiez si les répertoires existent
@@ -56,7 +75,7 @@ namespace EasySave
             {
                 string dirToCreate = dir.Replace(dossierSource, dossierCible);
                 Directory.CreateDirectory(dirToCreate);
-                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du dossier " + numeroDossier + "/" + nbDossiersTotal + " " + dirToCreate + " vers " + dossierCible);
+                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du dossier " + numeroDossier + "/" + nbDossiersTotal + " " + dirToCreate + " vers " + dossierCible,false);
                 numeroDossier++;
             }
 
@@ -67,21 +86,17 @@ namespace EasySave
             foreach (string newPath in allFiles)
             {
                 File.Copy(newPath, newPath.Replace(dossierSource, dossierCible));
-                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du fichier " + numeroFichier + "/" + nbFichiersTotal + " " + newPath + " vers " + dossierCible);
+                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du fichier " + numeroFichier + "/" + nbFichiersTotal + " " + newPath + " vers " + dossierCible,false);
                 numeroFichier++;
             }
-
-            Console.WriteLine("La copie a été effectuée avec succès");
         }
-
-
-
         static void Main(string[] args)
         {
             bool quit = false;
             string langue = "fr";
             string dossierLangue = @"C:\Easysave\Langues\fr";
             string cheminLogs = @"C:\Easysave\logs.txt";
+            string cheminListeProfils = @"C:\Easysave\Profils\listeprofils.txt";
             string dossierProfils = @"C:\Easysave\Profils\";
             int nbProfils = Directory.GetFiles(dossierProfils, "*", SearchOption.TopDirectoryOnly).Length;
 
@@ -100,7 +115,7 @@ namespace EasySave
                 int choix = Convert.ToInt32(Console.ReadLine());
                 switch(choix)
                 {
-                    case 1:
+                    case 1: //cette fonction sert à créer un profil, sauvegardé dans son propre fichier txt
                         if(nbProfils>4)
                         {
                             Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(0).Take(1).First());
@@ -109,15 +124,15 @@ namespace EasySave
                         {
                             Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(1).Take(1).First());
                             string nomProfil = Console.ReadLine();
-                            ecrireFichier(dossierProfils + nomProfil + ".txt", nomProfil);
+                            ecrireFichier(dossierProfils + nomProfil + ".txt", nomProfil, false);
 
                             Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(2).Take(1).First());
                             string dossierSource = Console.ReadLine();
-                            ecrireFichier(dossierProfils + nomProfil + ".txt", dossierSource);
+                            ecrireFichier(dossierProfils + nomProfil + ".txt", dossierSource, false);
 
                             Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(3).Take(1).First());
                             string dossierCible = Console.ReadLine();
-                            ecrireFichier(dossierProfils + nomProfil + ".txt", dossierCible);
+                            ecrireFichier(dossierProfils + nomProfil + ".txt", dossierCible, false);
 
                             Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(4).Take(1).First());
                             string typeSave = Console.ReadLine();
@@ -129,33 +144,72 @@ namespace EasySave
                                     typeSave = Console.ReadLine();
                                 }
                             }
-                            ecrireFichier(dossierProfils + nomProfil + ".txt", typeSave);  
+                            ecrireFichier(dossierProfils + nomProfil + ".txt", typeSave, false);
+                            ecrireFichier(dossierProfils + "listeprofils.txt", nomProfil, false); //ajout du profil dans la liste des profils
                         }
                         break;
 
                     case 2: //exécuter backup
-                        Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(0).Take(1).First());
-                        string choixProfil = Console.ReadLine();
-                        Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(1).Take(1).First() + choixProfil + ".txt ? [y/n]");
-                        string choixYN = Console.ReadLine();
-                        if ((choixYN != "y") & choixYN != "n")
+                        Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(2).Take(1).First()); //un ou tous les profils ?
+                        int choixBackup = Convert.ToInt32(Console.ReadLine()); //1 pour un profil, 2 pour tous les profils à la suite
+                        if ((choixBackup != 1) & (choixBackup != 2))
                         {
-                            while ((choixYN != "y") & choixYN != "n")
+                            while ((choixBackup != 1) & (choixBackup != 2))
                             {
-                                Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(1).Take(1).First() + choixProfil + ".txt ? [y/n]");
-                                choixYN = Console.ReadLine();
+                                Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(2).Take(1).First());
+                                choixBackup = Convert.ToInt32(Console.ReadLine());
                             }
                         }
-                        if (choixYN == "y")
+                        if (choixBackup == 1)
                         {
-                            string dossierSource = File.ReadLines(dossierProfils + choixProfil + ".txt").Skip(1).Take(1).First();
-                            string dossierCible = File.ReadLines(dossierProfils + choixProfil + ".txt").Skip(2).Take(1).First();
-                            copierDossier(dossierSource, dossierCible);
+                            Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(0).Take(1).First());
+                            lireFichier(cheminListeProfils);
+                            string choixProfil = Console.ReadLine();
+                            Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(1).Take(1).First() + choixProfil + ".txt ? [y/n]");
+                            string choixYN = Console.ReadLine();
+                            if ((choixYN != "y") & choixYN != "n")
+                            {
+                                while ((choixYN != "y") & choixYN != "n")
+                                {
+                                    Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(1).Take(1).First() + choixProfil + ".txt ? [y/n]");
+                                    choixYN = Console.ReadLine();
+                                }
+                            }
+                            if (choixYN == "y")
+                            {
+                                string profilAExecuter = dossierProfils + choixProfil + ".txt";
+                                executeBackup(profilAExecuter);
+                                Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(4).Take(1).First()); //la sauvegarde s'est bien passé
+                            }
+                            else
+                            {
+                                break;
+                            }
                         }
-                        else
+                        else if(choixBackup == 2)
                         {
-                            break;
+                            Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(3).Take(1).First());
+                            string choixYN = Console.ReadLine();
+                            if ((choixYN != "y") & choixYN != "n")
+                            {
+                                while ((choixYN != "y") & choixYN != "n")
+                                {
+                                    Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(3).Take(1).First());
+                                    choixYN = Console.ReadLine();
+                                }
+                            }
+                            if (choixYN == "y")
+                            {
+                                //récupérer tous les profils dans une boucle et exécuter le backup
+                                multiBackup(cheminListeProfils);
+                                Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(5).Take(1).First()); //la sauvegarde s'est bien passé
+                            }
+                            else
+                            {
+                                break;
+                            }
                         }
+                        
 
                         break;
 
