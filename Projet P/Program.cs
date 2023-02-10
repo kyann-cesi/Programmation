@@ -57,13 +57,13 @@ namespace EasySave
             // Vérifiez si les répertoires existent
             if (!Directory.Exists(dossierSource))
             {
-                Console.WriteLine("Le répertoire source n'existe pas");
+                Directory.CreateDirectory(dossierSource);
                 return;
             }
 
             if (!Directory.Exists(dossierCible))
             {
-                Console.WriteLine("Le répertoire cible n'existe pas");
+                Directory.CreateDirectory(dossierCible);
                 return;
             }
 
