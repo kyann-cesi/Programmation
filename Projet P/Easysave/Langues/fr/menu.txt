@@ -1,0 +1,11 @@
+  / __/ _ | / __/\ \/ / __/ _ | | / / __/ | | / <  // _ \
+ / _// __ |_\ \   \  /\ \/ __ | |/ / _/   | |/ // // // /
+/___/_/ |_/___/   /_/___/_/ |_|___/___/   |___//_(_)___/ 
+                                                         
+1 : Créer un profil
+2 : Exécuter une sauvegarde
+3 : Consulter les logs
+4 : Passer en anglais/Switch to english
+5 : Quitter
+
+Entrez votre choix :

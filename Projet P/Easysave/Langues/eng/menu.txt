@@ -1,0 +1,11 @@
+  / __/ _ | / __/\ \/ / __/ _ | | / / __/ | | / <  // _ \
+ / _// __ |_\ \   \  /\ \/ __ | |/ / _/   | |/ // // // /
+/___/_/ |_/___/   /_/___/_/ |_|___/___/   |___//_(_)___/ 
+                                                         
+1 : Create a profile
+2 : Execute backup
+3 : View logs
+4 : Switch to french/Passer en français
+5 : Quit
+
+Enter your choice :

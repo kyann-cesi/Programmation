@@ -1,0 +1,8 @@
+09/02/2023 20:02:17 Copie du dossier 1/2 C:\Users\delav\Favorites\eng vers C:\Users\delav\Favorites
+09/02/2023 20:02:17 Copie du dossier 2/2 C:\Users\delav\Favorites\fr vers C:\Users\delav\Favorites
+09/02/2023 20:02:17 Copie du fichier 1/4 C:\Easysave\Langues\eng\backup.txt vers C:\Users\delav\Favorites
+09/02/2023 20:02:17 Copie du fichier 2/4 C:\Easysave\Langues\eng\menu.txt vers C:\Users\delav\Favorites
+09/02/2023 20:02:17 Copie du fichier 3/4 C:\Easysave\Langues\eng\profil.txt vers C:\Users\delav\Favorites
+09/02/2023 20:02:17 Copie du fichier 4/4 C:\Easysave\Langues\fr\backup.txt vers C:\Users\delav\Favorites
+09/02/2023 20:02:17 Copie du fichier 5/4 C:\Easysave\Langues\fr\menu.txt vers C:\Users\delav\Favorites
+09/02/2023 20:02:17 Copie du fichier 6/4 C:\Easysave\Langues\fr\profil.txt vers C:\Users\delav\Favorites
