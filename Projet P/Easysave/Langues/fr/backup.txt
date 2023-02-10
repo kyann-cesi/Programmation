@@ -1,2 +1,6 @@
-Entrez le nom d'un profil de sauvegarde :
+Choisissez le profil de sauvegarde dans la liste :
 Sauvegarder à partir de 
+Voulez-vous exécuter un ou tous les profils ? [1 = un, 2 = tous]
+Sauvegarder à partir de tous les profils ? [y/n]
+La copie a été effectuée avec succès
+Les copies se sont effectuées avec succès

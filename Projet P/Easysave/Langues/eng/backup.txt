@@ -1,2 +1,6 @@
 Choose a profile to get backup infos from :
 Save from the profile 
+Would you like to execute one or every profiles ? [1 = one, 2 = all]
+Execute all backup profiles one by one ? [y/n]
+Backup successful
+Backups successful
