@@ -9,6 +9,8 @@ Suite à cela votre profil sera créé et vous pourrez :
 Exécuter la sauvegarde, puis une fois cela fait regarder les logs ou le fichier d’avancement qui ont été créer lors de l’exécution de la sauvegarde.
 Tout le reste et assez intuitif mais si jamais vous avez un problème veuillez nous le faire part.
 
+Pour le livrable 1.1 nous avons l'interface graphique qu'il faut copier dans un projet WPF sur Visual Studio.
+
 Cordialement
 L’équipe FranceProject
 Kyann, Thomas, Ilyass, Cédric
