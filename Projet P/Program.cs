@@ -72,35 +72,10 @@ namespace EasySave
             stopwatch.Start();
             long totalBytes = 0;
 
-            /*
-            //le code ci-dessous copie tous les sous-dossiers du répertoire source à cible
-            string[] allDirectories = Directory.GetDirectories(dossierSource, "*", SearchOption.AllDirectories);
-            int numeroDossier = 1;
-            int nbDossiersTotal = Directory.GetDirectories(dossierCible, "*", SearchOption.AllDirectories).Length;
-            foreach (string dir in allDirectories)
-            {
-                string dirToCreate = dir.Replace(dossierSource, dossierCible);
-                Directory.CreateDirectory(dirToCreate);
-                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du dossier " + numeroDossier + "/" + nbDossiersTotal + " " + dirToCreate + " vers " + dossierCible, false);
-                numeroDossier++;
-            }
-
-            //ce code copie tous les fichiers contenu dans le dossier et dans les sous-dossiers
-            string[] allFiles = Directory.GetFiles(dossierSource, "*.*", SearchOption.AllDirectories);
-            int numeroFichier = 1;
-            int nbFichiersTotal = Directory.GetFiles(dossierCible, "*", SearchOption.AllDirectories).Length;
-            foreach (string newPath in allFiles)
-            {
-                File.Copy(newPath, newPath.Replace(dossierSource, dossierCible));
-                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du fichier " + numeroFichier + "/" + nbFichiersTotal + " " + newPath + " vers " + dossierCible, false);
-                numeroFichier++;
-            }
-            */
-
             foreach (var file in Directory.GetFiles(dossierSource, "*.*", SearchOption.AllDirectories))
             {
                 string relativePath = file.Replace(dossierSource, "");
-                string targetPath = Path.Combine(dossierCible, relativePath);
+                string targetPath = dossierCible + relativePath;
                 Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
                 var fileInfo = new FileInfo(file);
                 totalBytes += fileInfo.Length;
@@ -113,7 +88,7 @@ namespace EasySave
             ecrireFichier(cheminLogs,"Copie terminée avec succès.",false);
             ecrireFichier(cheminLogs,"Temps écoulé : " + elapsedTime,false);
             ecrireFichier(cheminLogs,"Taille totale des fichiers transférés : " + totalBytes + " octets",false);
-            ecrireFichier(cheminLogs,"Vitesse de transfert : " + (totalBytes / 1024 / 1024 / elapsedTime.TotalSeconds).ToString("0.##") + " Mo/s",false);
+            ecrireFichier(cheminLogs,"Vitesse de transfert : " + (totalBytes / 1024 / elapsedTime.TotalSeconds).ToString("0.##") + " Ko/s",false);
         }
         static void Main(string[] args)
         {
