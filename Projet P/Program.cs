@@ -1,11 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Web;
+using Newtonsoft.Json;
+using System.Xml.Serialization;
 using System.Diagnostics;
+
 
 namespace EasySave
 {
@@ -85,10 +88,10 @@ namespace EasySave
             stopwatch.Stop();
             TimeSpan elapsedTime = stopwatch.Elapsed; //fin de stopwatch
 
-            ecrireFichier(cheminLogs,"Copie terminée avec succès.",false);
-            ecrireFichier(cheminLogs,"Temps écoulé : " + elapsedTime,false);
-            ecrireFichier(cheminLogs,"Taille totale des fichiers transférés : " + totalBytes + " octets",false);
-            ecrireFichier(cheminLogs,"Vitesse de transfert : " + (totalBytes / 1024 / elapsedTime.TotalSeconds).ToString("0.##") + " Ko/s",false);
+            ecrireFichier(cheminLogs, "Copie terminée avec succès.", false);
+            ecrireFichier(cheminLogs, "Temps écoulé : " + elapsedTime, false);
+            ecrireFichier(cheminLogs, "Taille totale des fichiers transférés : " + totalBytes + " octets", false);
+            ecrireFichier(cheminLogs, "Vitesse de transfert : " + (totalBytes / 1024 / elapsedTime.TotalSeconds).ToString("0.##") + " Ko/s", false);
         }
         static void Main(string[] args)
         {
@@ -145,9 +148,52 @@ namespace EasySave
                                     typeSave = Console.ReadLine();
                                 }
                             }
+
+                            Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(5).Take(1).First());
+                            string logtype = Console.ReadLine();
+                            ecrireFichier(dossierProfils + nomProfil + ".txt", logtype, false);
+
+                            if ((logtype != "xml") & logtype != "json")
+                            {
+                                while ((logtype != "xml") & logtype != "json")
+                                {
+                                    Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(6).Take(1).First());
+                                    logtype = Console.ReadLine();
+                                }
+                            }
+
                             ecrireFichier(dossierProfils + nomProfil + ".txt", typeSave, false);
                             ecrireFichier(dossierProfils + "listeprofils.txt", nomProfil, false); //ajout du profil dans la liste des profils
+
+                            if (logtype == "json")
+                            {
+                                // Chemin d'accès au fichier .txt
+                                string filePath = @"C:\Easysave\logs.txt";
+
+                                // Lecture du contenu du fichier
+                                string textFile = File.ReadAllText(filePath);
+
+                                // Conversion en JSON
+                                string json = JsonConvert.SerializeObject(textFile);
+                                File.WriteAllText(@"C:\Easysave\logs.json", json);
+                            }
+                            if (logtype == "xml")
+                            {
+                                // Chemin d'accès au fichier .txt
+                                string filePath = @"C:\Easysave\logs.txt";
+
+                                // Lecture du contenu du fichier
+                                string textFile = File.ReadAllText(filePath);
+
+                                // Conversion en XML
+                                XmlSerializer serializer = new XmlSerializer(typeof(string));
+                                using (TextWriter writer = new StreamWriter(@"C:\Easysave\logs.xml"))
+                                {
+                                    serializer.Serialize(writer, textFile);
+                                }
+                            }
                         }
+
                         break;
 
                     case 2: //exécuter backup
@@ -209,6 +255,7 @@ namespace EasySave
                             {
                                 break;
                             }
+
                         }
 
 
