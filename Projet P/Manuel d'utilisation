@@ -1,5 +1,6 @@
 Pour pouvoir utiliser notre application il faut tout d'abord que vous installiez le dossier Easysave a la racine de votre disque local (C:).
 Ensuite vous n'avez cas lancer le program.cs qui est notre site sans interface graphique (livrable 1).
+Il faut installer l'extension JSON pour notre convertisseur sinon tout est en txt. (voir code ligne 152).
 
 Comment utiliser notre site :
 Vous pouvez en tapant le numéros 4 choisir votre langue, français ou anglais.
