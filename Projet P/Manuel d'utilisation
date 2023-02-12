@@ -1,9 +1,9 @@
-Pour pouvoir utiliser notre application il faut tout d'abord que vous installiez le dosiier Easysave a la racine de votre disque local (C:).
+Pour pouvoir utiliser notre application il faut tout d'abord que vous installiez le dossier Easysave a la racine de votre disque local (C:).
 Ensuite vous n'avez cas lancer le program.cs qui est notre site sans interface graphique (livrable 1).
 
 Comment utiliser notre site :
 Vous pouvez en tapant le numéros 4 choisir votre langue, français ou anglais.
-Tout d'abords veuillez créer un profil dans lequel vous allez mentionner son nom, le répertoire source (celui que vous voulez copiez), le répertoire cible (la ou vous voulez le coller) puis le type. 
+Tout d'abord veuillez créer un profil dans lequel vous allez mentionner son nom, le répertoire source (celui que vous voulez copiez), le répertoire cible (la ou vous voulez le coller) puis le type. 
 ATTENTION !! Veuillez mettre tout vos fichiers dans un dossier.
 Suite à cela votre profil sera créé et vous pourrez :
 Exécuter la sauvegarde, puis une fois cela fait regarder les logs ou le fichier d’avancement qui ont été créer lors de l’exécution de la sauvegarde.
