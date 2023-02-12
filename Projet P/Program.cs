@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Web;
+using System.Diagnostics;
 
 namespace EasySave
 {
@@ -14,7 +15,7 @@ namespace EasySave
         {
             StreamReader Lire = new StreamReader(cheminFichier);
             string line;
-            while((line=Lire.ReadLine())!=null)
+            while ((line = Lire.ReadLine()) != null)
             {
                 Console.WriteLine(line);
             }
@@ -67,6 +68,11 @@ namespace EasySave
                 return;
             }
 
+            var stopwatch = new Stopwatch(); //début de la stopwatch
+            stopwatch.Start();
+            long totalBytes = 0;
+
+            /*
             //le code ci-dessous copie tous les sous-dossiers du répertoire source à cible
             string[] allDirectories = Directory.GetDirectories(dossierSource, "*", SearchOption.AllDirectories);
             int numeroDossier = 1;
@@ -75,7 +81,7 @@ namespace EasySave
             {
                 string dirToCreate = dir.Replace(dossierSource, dossierCible);
                 Directory.CreateDirectory(dirToCreate);
-                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du dossier " + numeroDossier + "/" + nbDossiersTotal + " " + dirToCreate + " vers " + dossierCible,false);
+                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du dossier " + numeroDossier + "/" + nbDossiersTotal + " " + dirToCreate + " vers " + dossierCible, false);
                 numeroDossier++;
             }
 
@@ -86,9 +92,28 @@ namespace EasySave
             foreach (string newPath in allFiles)
             {
                 File.Copy(newPath, newPath.Replace(dossierSource, dossierCible));
-                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du fichier " + numeroFichier + "/" + nbFichiersTotal + " " + newPath + " vers " + dossierCible,false);
+                ecrireFichier(cheminAvancement, DateTime.Now + " Copie du fichier " + numeroFichier + "/" + nbFichiersTotal + " " + newPath + " vers " + dossierCible, false);
                 numeroFichier++;
             }
+            */
+
+            foreach (var file in Directory.GetFiles(dossierSource, "*.*", SearchOption.AllDirectories))
+            {
+                string relativePath = file.Replace(dossierSource, "");
+                string targetPath = Path.Combine(dossierCible, relativePath);
+                Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
+                var fileInfo = new FileInfo(file);
+                totalBytes += fileInfo.Length;
+                File.Copy(file, targetPath, true);
+            }
+
+            stopwatch.Stop();
+            TimeSpan elapsedTime = stopwatch.Elapsed; //fin de stopwatch
+
+            ecrireFichier(cheminLogs,"Copie terminée avec succès.",false);
+            ecrireFichier(cheminLogs,"Temps écoulé : " + elapsedTime,false);
+            ecrireFichier(cheminLogs,"Taille totale des fichiers transférés : " + totalBytes + " octets",false);
+            ecrireFichier(cheminLogs,"Vitesse de transfert : " + (totalBytes / 1024 / 1024 / elapsedTime.TotalSeconds).ToString("0.##") + " Mo/s",false);
         }
         static void Main(string[] args)
         {
@@ -100,7 +125,8 @@ namespace EasySave
             string dossierProfils = @"C:\Easysave\Profils\";
             int nbProfils = Directory.GetFiles(dossierProfils, "*", SearchOption.TopDirectoryOnly).Length;
 
-            while (quit==false)
+
+            while (quit == false)
             {
                 if (langue == "fr")
                 {
@@ -111,12 +137,12 @@ namespace EasySave
                     dossierLangue = @"C:\Easysave\Langues\eng\";
                 }
 
-                lireFichier(dossierLangue+"menu.txt");
+                lireFichier(dossierLangue + "menu.txt");
                 int choix = Convert.ToInt32(Console.ReadLine());
-                switch(choix)
+                switch (choix)
                 {
                     case 1: //cette fonction sert à créer un profil, sauvegardé dans son propre fichier txt
-                        if(nbProfils>4)
+                        if (nbProfils > 4)
                         {
                             Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(0).Take(1).First());
                         }
@@ -186,7 +212,7 @@ namespace EasySave
                                 break;
                             }
                         }
-                        else if(choixBackup == 2)
+                        else if (choixBackup == 2)
                         {
                             Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(3).Take(1).First());
                             string choixYN = Console.ReadLine();
@@ -209,7 +235,7 @@ namespace EasySave
                                 break;
                             }
                         }
-                        
+
 
                         break;
 
