@@ -4,8 +4,9 @@
                                                          
 1 : Créer un profil
 2 : Exécuter une sauvegarde
-3 : Consulter les logs
-4 : Passer en anglais/Switch to english
-5 : Quitter
+3 : Changer le format des logs
+4 : Consulter les logs
+5 : Passer en anglais/Switch to english
+6 : Quitter
 
 Entrez votre choix :

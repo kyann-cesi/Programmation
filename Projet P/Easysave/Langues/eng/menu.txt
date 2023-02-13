@@ -4,8 +4,9 @@
                                                          
 1 : Create a profile
 2 : Execute backup
-3 : View logs
-4 : Switch to french/Passer en français
-5 : Quit
+3 : Change logs format
+4 : View logs
+5 : Switch to french/Passer en français
+6 : Quit
 
 Enter your choice :

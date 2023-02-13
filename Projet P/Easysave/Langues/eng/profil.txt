@@ -3,3 +3,5 @@ Choose a profile name :
 Choose a source folder : (exemple : C:\Users\FolderToSave)
 Choose a target folder : (exemple : C:\Users\TargetFolder)
 Choose a backup type : (c for complete, d for differential)
+This profile already exists, please choose another name :
+Choose the logs format between JSON and XML : [json/xml]

@@ -4,3 +4,4 @@ Entrez un répertoire source : (exemple : C:\Users\DossieràSauvegarder)
 Entrez un répertoire cible : (exemple : C:\Users\DossierCible)
 Entrez un choix de type de sauvegarde : (c pour complète, d pour différentielle)
 Ce profil existe déjà, entrez un autre nom de profil :
+Souhaitez-vous des logs au format JSON ou XML ? [json/xml]
