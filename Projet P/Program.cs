@@ -124,39 +124,34 @@ namespace EasySave
                 switch (choix)
                 {
                     case 1: //cette fonction sert à créer un profil, sauvegardé dans son propre fichier txt
-                        if (nbProfils > 4)
+
+                        Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(1).Take(1).First());
+                        string nomProfil = Console.ReadLine();
+                        ecrireFichier(dossierProfils + nomProfil + ".txt", nomProfil, false);
+
+                        Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(2).Take(1).First());
+                        string dossierSource = Console.ReadLine();
+                        ecrireFichier(dossierProfils + nomProfil + ".txt", dossierSource, false);
+
+                        Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(3).Take(1).First());
+                        string dossierCible = Console.ReadLine();
+                        ecrireFichier(dossierProfils + nomProfil + ".txt", dossierCible, false);
+
+                        Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(4).Take(1).First());
+                        string typeSave = Console.ReadLine();
+                        if ((typeSave != "d") & typeSave != "c")
                         {
-                            Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(0).Take(1).First());
-                        }
-                        else
-                        {
-                            Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(1).Take(1).First());
-                            string nomProfil = Console.ReadLine();
-                            ecrireFichier(dossierProfils + nomProfil + ".txt", nomProfil, false);
-
-                            Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(2).Take(1).First());
-                            string dossierSource = Console.ReadLine();
-                            ecrireFichier(dossierProfils + nomProfil + ".txt", dossierSource, false);
-
-                            Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(3).Take(1).First());
-                            string dossierCible = Console.ReadLine();
-                            ecrireFichier(dossierProfils + nomProfil + ".txt", dossierCible, false);
-
-                            Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(4).Take(1).First());
-                            string typeSave = Console.ReadLine();
-                            if ((typeSave != "d") & typeSave != "c")
+                            while ((typeSave != "d") & typeSave != "c")
                             {
-                                while ((typeSave != "d") & typeSave != "c")
-                                {
-                                    Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(4).Take(1).First());
-                                    typeSave = Console.ReadLine();
-                                }
+                                Console.WriteLine(File.ReadLines(dossierLangue + "profil.txt").Skip(4).Take(1).First());
+                                typeSave = Console.ReadLine();
                             }
-                            ecrireFichier(dossierProfils + nomProfil + ".txt", typeSave, false);
-                            ecrireFichier(dossierProfils + "listeprofils.txt", nomProfil, false); //ajout du profil dans la liste des profils
                         }
+                        ecrireFichier(dossierProfils + nomProfil + ".txt", typeSave, false);
+                        ecrireFichier(dossierProfils + "listeprofils.txt", nomProfil, false); //ajout du profil dans la liste des profils
+                        
 
-                        break;
+                    break;
 
                     case 2: //exécuter backup
                         Console.WriteLine(File.ReadLines(dossierLangue + "backup.txt").Skip(2).Take(1).First()); //un ou tous les profils ?
