@@ -1,0 +1,131 @@
+ public void CompleteSave(string inputpathsave, string inputDestToSave, bool copyDir, bool verif) //Function for full folder backup
+        {
+            int MAX_SIZE_LIMIT_IN_KB = 0;
+            Int32.TryParse(ConfH.GetParticularKeyValue("MaxFileSizeLimit"), out MAX_SIZE_LIMIT_IN_KB);
+
+            LogsState = new LogsState(nameStateFile);
+            this.LogsState.saveState = true;
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start(); //Starting the timed for the log file
+
+            DirectoryInfo dir = new DirectoryInfo(inputpathsave);  // Get the subdirectories for the specified directory.
+
+            if (!dir.Exists) //Check if the file is present
+            {
+                throw new DirectoryNotFoundException("ERROR : Directory Not Found ! " + inputpathsave);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            Directory.CreateDirectory(inputDestToSave); // If the destination directory doesn't exist, create it.  
+
+            FileInfo[] files = dir.GetFiles(); // Get the files in the directory and copy them to the new location.
+
+            if (!verif) //  Check for the status file if it needs to reset the variables
+            {
+                totalSize = 0;
+                nbfilesmax = 0;
+                size = 0;
+                nbfiles = 0;
+                progs = 0;
+
+                foreach (FileInfo file in files) // Loop to allow calculation of files and folder size
+                {
+                    totalSize += file.Length;
+                    nbfilesmax++;
+                }
+                foreach (DirectoryInfo subdir in dirs) // Loop to allow calculation of subfiles and subfolder size
+                {
+                    FileInfo[] Maxfiles = subdir.GetFiles();
+                    foreach (FileInfo file in Maxfiles)
+                    {
+                        totalSize += file.Length;
+                        nbfilesmax++;
+                    }
+                }
+                ConfH.AddUpdateAppSettings("RemainingLength", totalSize.ToString());
+                //MessageBox.Show();
+
+            }
+
+            //Loop that allows to copy the files to make the backup
+            foreach (FileInfo file in files)
+            {
+                SizeLeft = Int64.Parse(ConfH.GetParticularKeyValue("RemainingLength")) - file.Length;
+                ConfH.AddUpdateAppSettings("RemainingLength", SizeLeft.ToString());
+
+                string tempPath = Path.Combine(inputDestToSave, file.Name);
+
+                if (size > 0)
+                {
+                    progs = ((float)size / totalSize) * 100;
+                }
+
+                //Systems which allows to insert the values ​​of each file in the report file.
+                LogsState.sourceRepository = Path.Combine(inputpathsave, file.Name);
+                LogsState.targetRepository = tempPath;
+                LogsState.totalSize = nbfilesmax;
+                LogsState.totalRepository = totalSize;
+                LogsState.totalSizeLeft = totalSize - size;
+                LogsState.repositoryRest = nbfilesmax - nbfiles;
+                LogsState.progress = progs;
+
+                UpdateStatefile(); //Call of the function to start the state file system
+
+                string test = Path.GetExtension(tempPath);
+
+                if (ConfH.GetAllExtToEncrypt(test))
+                {
+                    //MessageBox.Show(test);
+                    ProsW.FileToCrypte(Path.Combine(inputpathsave, file.Name), tempPath);
+                }
+                else
+                {
+                    //MessageBox.Show("non");
+                    long fileSizeInKB = file.Length / 1024;
+                    if (MAX_SIZE_LIMIT_IN_KB == 0 || (MAX_SIZE_LIMIT_IN_KB > 0 && fileSizeInKB <= MAX_SIZE_LIMIT_IN_KB))
+                        file.CopyTo(tempPath, true); //Function that allows you to copy the file to its new folder.
+                }
+
+                nbfiles++;
+                size += file.Length;
+
+                SizeLeft100 = (Int64.Parse(ConfH.GetParticularKeyValue("RemainingLength")) * 100) / Int64.Parse(totalSize.ToString());
+                ConfH.AddUpdateAppSettings("RemainingLength100", SizeLeft100.ToString());
+
+
+                //MessageBox.Show(SizeLeft100.ToString());
+                //Thread.Sleep(1000);
+
+                //progb.
+
+                if (BlackListProtocolIsActive())
+                {
+                    SleepUntilProtocol();
+                }
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copyDir)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string tempPath = Path.Combine(inputDestToSave, subdir.Name);
+                    CompleteSave(subdir.FullName, tempPath, copyDir, true);
+                }
+            }
+            //System which allows the values ​​to be reset to 0 at the end of the backup
+            LogsState.totalSize = totalSize;
+            LogsState.sourceRepository = null;
+            LogsState.targetRepository = null;
+            LogsState.totalRepository = 0;
+            LogsState.totalSize = 0;
+            LogsState.totalSizeLeft = 0;
+            LogsState.repositoryRest = 0;
+            LogsState.progress = 0;
+            LogsState.saveState = false;
+
+            UpdateStatefile(); //Call of the function to start the state file system
+
+            stopwatch.Stop(); //Stop the stopwatch
+            this.timeTransfert = stopwatch.Elapsed; // Transfer of the chrono time to the variable
+        }
