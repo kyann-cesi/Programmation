@@ -1,0 +1,15 @@
+C:\Users\cedri\source\repos\cryptosoft\bin\Debug\net6.0\cryptosoft.exe
+C:\Users\cedri\source\repos\cryptosoft\bin\Debug\net6.0\cryptosoft.deps.json
+C:\Users\cedri\source\repos\cryptosoft\bin\Debug\net6.0\cryptosoft.runtimeconfig.json
+C:\Users\cedri\source\repos\cryptosoft\bin\Debug\net6.0\cryptosoft.dll
+C:\Users\cedri\source\repos\cryptosoft\bin\Debug\net6.0\cryptosoft.pdb
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\cryptosoft.csproj.AssemblyReference.cache
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\cryptosoft.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\cryptosoft.AssemblyInfoInputs.cache
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\cryptosoft.AssemblyInfo.cs
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\cryptosoft.csproj.CoreCompileInputs.cache
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\cryptosoft.dll
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\refint\cryptosoft.dll
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\cryptosoft.pdb
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\cryptosoft.genruntimeconfig.cache
+C:\Users\cedri\source\repos\cryptosoft\obj\Debug\net6.0\ref\cryptosoft.dll
