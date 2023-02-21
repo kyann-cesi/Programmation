@@ -1,0 +1,23 @@
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1.csproj.AssemblyReference.cache
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1_MarkupCompile.cache
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1_MarkupCompile.lref
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\bin\Debug\net6.0-windows\livrable 1.1.exe
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\bin\Debug\net6.0-windows\livrable 1.1.deps.json
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\bin\Debug\net6.0-windows\livrable 1.1.runtimeconfig.json
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\bin\Debug\net6.0-windows\livrable 1.1.dll
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\bin\Debug\net6.0-windows\ref\livrable 1.1.dll
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\bin\Debug\net6.0-windows\livrable 1.1.pdb
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1.g.resources
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1.AssemblyInfoInputs.cache
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1.AssemblyInfo.cs
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1.csproj.CoreCompileInputs.cache
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1.dll
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\ref\livrable 1.1.dll
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1.pdb
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\livrable 1.1.genruntimeconfig.cache
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\Dictionary1.baml
+C:\Users\ARIANI\source\repos\livrable 1.1\livrable 1.1\obj\Debug\net6.0-windows\francais.baml
