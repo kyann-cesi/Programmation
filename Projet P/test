@@ -129,3 +129,29 @@
             stopwatch.Stop(); //Stop the stopwatch
             this.timeTransfert = stopwatch.Elapsed; // Transfer of the chrono time to the variable
         }
+        
+        
+        ----------------------------------------------------------------------------------------------------
+        ----------------------------------------------------------------------------------------------------
+         if (backup.type == 1) //If the type is 1, it means it's a full backup
+            {
+                nameStateFile = backup.nameToSave;
+
+                delegateLoad loadsaveDeleg = CompleteSave;
+
+                loadsaveThread = new Thread(() => loadsaveDeleg(backup.sourceRepository, backup.targetRepository, true, false));
+
+                loadsaveThread.Start();
+
+
+                //CompleteSave(backup.sourceRepository, backup.targetRepository, true, false); //Calling the function to run the full backup
+                UpdateLogFile(backup.nameToSave, backup.sourceRepository, backup.targetRepository); //Call of the function to start the modifications of the log file
+                Console.WriteLine("Saved Successfull !"); //Satisfaction message display
+            }
+            else //If this is the wrong guy then, it means it's a differential backup
+            {
+                nameStateFile = backup.nameToSave;
+                DifferentialSave(backup.sourceRepository, backup.mirrorRepository, backup.targetRepository); //Calling the function to start the differential backup
+                UpdateLogFile(backup.nameToSave, backup.sourceRepository, backup.targetRepository); //Call of the function to start the modifications of the log file
+                Console.WriteLine("Saved Successfull !"); //Satisfaction message display
+            }
