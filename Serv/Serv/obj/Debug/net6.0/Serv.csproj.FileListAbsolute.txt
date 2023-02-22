@@ -1,0 +1,14 @@
+C:\Users\ARIANI\source\repos\Serv\Serv\bin\Debug\net6.0\Serv.exe
+C:\Users\ARIANI\source\repos\Serv\Serv\bin\Debug\net6.0\Serv.deps.json
+C:\Users\ARIANI\source\repos\Serv\Serv\bin\Debug\net6.0\Serv.runtimeconfig.json
+C:\Users\ARIANI\source\repos\Serv\Serv\bin\Debug\net6.0\Serv.dll
+C:\Users\ARIANI\source\repos\Serv\Serv\bin\Debug\net6.0\ref\Serv.dll
+C:\Users\ARIANI\source\repos\Serv\Serv\bin\Debug\net6.0\Serv.pdb
+C:\Users\ARIANI\source\repos\Serv\Serv\obj\Debug\net6.0\Serv.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ARIANI\source\repos\Serv\Serv\obj\Debug\net6.0\Serv.AssemblyInfoInputs.cache
+C:\Users\ARIANI\source\repos\Serv\Serv\obj\Debug\net6.0\Serv.AssemblyInfo.cs
+C:\Users\ARIANI\source\repos\Serv\Serv\obj\Debug\net6.0\Serv.csproj.CoreCompileInputs.cache
+C:\Users\ARIANI\source\repos\Serv\Serv\obj\Debug\net6.0\Serv.dll
+C:\Users\ARIANI\source\repos\Serv\Serv\obj\Debug\net6.0\ref\Serv.dll
+C:\Users\ARIANI\source\repos\Serv\Serv\obj\Debug\net6.0\Serv.pdb
+C:\Users\ARIANI\source\repos\Serv\Serv\obj\Debug\net6.0\Serv.genruntimeconfig.cache
