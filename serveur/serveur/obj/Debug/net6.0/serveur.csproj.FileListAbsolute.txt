@@ -1,0 +1,15 @@
+C:\Users\ARIANI\source\repos\serveur\serveur\bin\Debug\net6.0\serveur.exe
+C:\Users\ARIANI\source\repos\serveur\serveur\bin\Debug\net6.0\serveur.deps.json
+C:\Users\ARIANI\source\repos\serveur\serveur\bin\Debug\net6.0\serveur.runtimeconfig.json
+C:\Users\ARIANI\source\repos\serveur\serveur\bin\Debug\net6.0\serveur.dll
+C:\Users\ARIANI\source\repos\serveur\serveur\bin\Debug\net6.0\ref\serveur.dll
+C:\Users\ARIANI\source\repos\serveur\serveur\bin\Debug\net6.0\serveur.pdb
+C:\Users\ARIANI\source\repos\serveur\serveur\obj\Debug\net6.0\serveur.csproj.AssemblyReference.cache
+C:\Users\ARIANI\source\repos\serveur\serveur\obj\Debug\net6.0\serveur.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ARIANI\source\repos\serveur\serveur\obj\Debug\net6.0\serveur.AssemblyInfoInputs.cache
+C:\Users\ARIANI\source\repos\serveur\serveur\obj\Debug\net6.0\serveur.AssemblyInfo.cs
+C:\Users\ARIANI\source\repos\serveur\serveur\obj\Debug\net6.0\serveur.csproj.CoreCompileInputs.cache
+C:\Users\ARIANI\source\repos\serveur\serveur\obj\Debug\net6.0\serveur.dll
+C:\Users\ARIANI\source\repos\serveur\serveur\obj\Debug\net6.0\ref\serveur.dll
+C:\Users\ARIANI\source\repos\serveur\serveur\obj\Debug\net6.0\serveur.pdb
+C:\Users\ARIANI\source\repos\serveur\serveur\obj\Debug\net6.0\serveur.genruntimeconfig.cache
